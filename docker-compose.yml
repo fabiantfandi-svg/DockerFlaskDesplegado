@@ -23,6 +23,7 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - red-cba
+
   app-backend:
     image: fandefangs/cba-backend-api:latest
     container_name: app-backend-ejemplo
@@ -35,6 +36,17 @@ services:
     depends_on:
       - servidor-bd
 
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    restart: always
+    ports:
+      - "3001:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+    networks:
+      - red-cba
+
 networks:
   red-cba:
     name: red-cba-ejemplo
@@ -42,4 +54,5 @@ networks:
 volumes:
   mysql-data:
     name: mysql-data
-
+  uptime-kuma-data:
+    name: uptime-kuma-data
