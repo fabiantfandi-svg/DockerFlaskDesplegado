@@ -10,7 +10,7 @@ def client():
 def test_read_main_success(client):
     """Valida que la ruta principal devuelva un código HTTP 200 OK."""
     response = client.get('/')
-    assert response.status_code == 404
+    assert response.status_code == 200
     
 # def test_ejemplo_basico():
  # assert 1 + 1 == 2
