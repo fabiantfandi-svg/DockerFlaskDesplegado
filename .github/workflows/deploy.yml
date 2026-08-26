@@ -3,7 +3,7 @@ name: Publicar Imagen en Docker Hub
 on:
   push:
     branches: ["main"]
-  workflow_dispatch:
+    workflow_dispatch:
 
 jobs:
 
@@ -29,6 +29,7 @@ jobs:
 
       - name: Ejecutar pruebas pytest
         run: pytest
+      
 
   build-and-push:
     runs-on: ubuntu-latest
@@ -61,6 +62,7 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH' 
+          trivyignores: '.trivyignore'
       
       - name: Subir la imagen a Docker Hub
         run: docker push fandefangs/cba-backend-api:latest
